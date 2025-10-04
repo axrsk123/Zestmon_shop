@@ -5,6 +5,14 @@ import phoneImage from "@/assets/product-phone.jpg";
 import watchImage from "@/assets/product-watch.jpg";
 import cameraImage from "@/assets/product-camera.jpg";
 import earbudsImage from "@/assets/product-earbuds.jpg";
+import tabletImage from "@/assets/product-tablet.jpg";
+import consoleImage from "@/assets/product-console.jpg";
+import keyboardImage from "@/assets/product-keyboard.jpg";
+import mouseImage from "@/assets/product-mouse.jpg";
+import monitorImage from "@/assets/product-monitor.jpg";
+import speakerImage from "@/assets/product-speaker.jpg";
+import ssdImage from "@/assets/product-ssd.jpg";
+import webcamImage from "@/assets/product-webcam.jpg";
 
 export const products: Product[] = [
   {
@@ -59,6 +67,78 @@ export const products: Product[] = [
     image: earbudsImage,
     category: "Audio",
     description: "Compact earbuds with impressive sound, long battery life, and comfortable fit.",
+    rating: 4,
+  },
+  {
+    id: "7",
+    name: "Pro Tablet",
+    price: 799,
+    image: tabletImage,
+    category: "Tablets",
+    description: "Powerful tablet with stunning display, perfect for work and creativity on the go.",
+    rating: 5,
+  },
+  {
+    id: "8",
+    name: "Gaming Console X",
+    price: 499,
+    image: consoleImage,
+    category: "Gaming",
+    description: "Next-gen gaming console with 4K graphics and lightning-fast load times.",
+    rating: 5,
+  },
+  {
+    id: "9",
+    name: "Mechanical Keyboard RGB",
+    price: 149,
+    image: keyboardImage,
+    category: "Accessories",
+    description: "Premium mechanical keyboard with customizable RGB lighting and tactile switches.",
+    rating: 4,
+  },
+  {
+    id: "10",
+    name: "Wireless Gaming Mouse",
+    price: 79,
+    image: mouseImage,
+    category: "Accessories",
+    description: "Ergonomic wireless mouse with precision sensor and long battery life.",
+    rating: 4,
+  },
+  {
+    id: "11",
+    name: "Ultrawide Monitor 34",
+    price: 699,
+    image: monitorImage,
+    category: "Displays",
+    description: "Immersive curved ultrawide monitor with stunning colors and high refresh rate.",
+    rating: 5,
+  },
+  {
+    id: "12",
+    name: "Portable Bluetooth Speaker",
+    price: 129,
+    image: speakerImage,
+    category: "Audio",
+    description: "Waterproof portable speaker with 360-degree sound and 20-hour battery life.",
+    rating: 4,
+  },
+  {
+    id: "13",
+    name: "External SSD 1TB",
+    price: 159,
+    image: ssdImage,
+    category: "Storage",
+    description: "Ultra-fast portable SSD with rugged design and massive storage capacity.",
+    rating: 5,
+  },
+  {
+    id: "14",
+    name: "HD Webcam Pro",
+    price: 99,
+    image: webcamImage,
+    category: "Accessories",
+    description: "Crystal clear 1080p webcam with built-in ring light for perfect video calls.",
     rating: 4,
   },
 ];
