@@ -57,9 +57,9 @@ const Index = () => {
       <section className="container py-16">
         <div className="flex flex-col gap-8">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight">Featured Products</h2>
+            <h2 className="text-3xl font-bold tracking-tight">Fresh Lemonades</h2>
             <p className="text-muted-foreground">
-              Explore our curated selection of premium tech products
+              Discover our handcrafted collection of refreshing lemonade flavors
             </p>
           </div>
           
