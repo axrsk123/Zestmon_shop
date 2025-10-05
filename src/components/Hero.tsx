@@ -17,10 +17,20 @@ const Hero = () => {
               Handcrafted lemonades made fresh daily with real fruit and natural ingredients. Pure refreshment in every glass.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="text-base">
+              <Button 
+                variant="hero" 
+                size="lg" 
+                className="text-base"
+                onClick={() => document.querySelector('#products')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 Order Now
               </Button>
-              <Button variant="outline" size="lg" className="text-base">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="text-base"
+                onClick={() => document.querySelector('#products')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 View Menu
               </Button>
             </div>
