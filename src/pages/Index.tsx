@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import Cart from "@/components/Cart";
+import About from "@/components/About";
 import { products } from "@/data/products";
 import { CartItem, Product } from "@/types/product";
 import { useToast } from "@/hooks/use-toast";
@@ -74,6 +75,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <About />
 
       <Cart
         items={cartItems}

@@ -25,14 +25,6 @@ const Hero = () => {
               >
                 Order Now
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="text-base"
-                onClick={() => document.querySelector('#products')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                View Menu
-              </Button>
             </div>
           </div>
           <div className="relative">

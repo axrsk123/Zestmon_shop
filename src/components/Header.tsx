@@ -15,13 +15,24 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
             Zestmon
           </h1>
           <nav className="hidden md:flex gap-6">
-            <a href="#" className="text-sm font-medium transition-colors hover:text-primary">
-              Lemonades
-            </a>
-            <a href="#" className="text-sm font-medium transition-colors hover:text-primary">
+            <a 
+              href="#products" 
+              className="text-sm font-medium transition-colors hover:text-primary"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector('#products')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               Flavors
             </a>
-            <a href="#" className="text-sm font-medium transition-colors hover:text-primary">
+            <a 
+              href="#about" 
+              className="text-sm font-medium transition-colors hover:text-primary"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               About Us
             </a>
           </nav>
