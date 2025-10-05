@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import Cart from "@/components/Cart";
 import About from "@/components/About";
+import SearchDialog from "@/components/SearchDialog";
 import { products } from "@/data/products";
 import { CartItem, Product } from "@/types/product";
 import { useToast } from "@/hooks/use-toast";
@@ -11,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 const Index = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { toast } = useToast();
 
   const handleAddToCart = (product: Product) => {
@@ -52,7 +54,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header cartItemCount={totalItems} onCartClick={() => setIsCartOpen(true)} />
+      <Header 
+        cartItemCount={totalItems} 
+        onCartClick={() => setIsCartOpen(true)}
+        onSearchClick={() => setIsSearchOpen(true)}
+      />
       <Hero />
       
       <section id="products" className="container py-16">
@@ -84,6 +90,12 @@ const Index = () => {
         onClose={() => setIsCartOpen(false)}
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
+      />
+
+      <SearchDialog
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        onSelectProduct={handleAddToCart}
       />
     </div>
   );

@@ -106,7 +106,15 @@ const Cart = ({ items, isOpen, onClose, onUpdateQuantity, onRemoveItem }: CartPr
                     <span className="text-primary">${total.toFixed(2)}</span>
                   </div>
                 </div>
-                <Button variant="hero" className="w-full" size="lg">
+                <Button 
+                  variant="hero" 
+                  className="w-full" 
+                  size="lg"
+                  onClick={() => {
+                    // In a real app, this would redirect to checkout
+                    alert(`Proceeding to checkout with ${items.length} item(s)\nTotal: $${total.toFixed(2)}`);
+                  }}
+                >
                   Checkout
                 </Button>
               </div>
