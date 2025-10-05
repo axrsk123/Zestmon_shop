@@ -8,6 +8,7 @@ const About = () => {
             At Zestmon, we believe in the power of simple, fresh ingredients. Every bottle 
             is crafted with care using real fruit, fresh lemons, and natural ingredients. 
             No artificial flavors, no preservatives – just pure, refreshing taste.
+            made by a 12 years old kid and organized by a parent 
           </p>
           <p className="text-lg text-muted-foreground">
             From our classic lemonade to exotic tropical blends, each flavor is designed to 
