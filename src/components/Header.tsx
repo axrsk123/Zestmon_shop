@@ -24,7 +24,7 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
                 document.querySelector('#products')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              Flavors
+              Lemonades
             </a>
             <a 
               href="#about" 
