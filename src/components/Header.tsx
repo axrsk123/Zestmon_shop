@@ -12,7 +12,7 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-8">
           <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Lemon Lane
+            Zestmon
           </h1>
           <nav className="hidden md:flex gap-6">
             <a href="#" className="text-sm font-medium transition-colors hover:text-primary">
