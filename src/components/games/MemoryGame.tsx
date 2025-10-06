@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Trophy, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -129,6 +129,7 @@ const MemoryGame = ({ isOpen, onClose, onBack }: MemoryGameProps) => {
             <Trophy className="h-5 w-5" />
             Flavor Match - Moves: {moves}
           </DialogTitle>
+          <DialogDescription>Match all the flavor pairs to win!</DialogDescription>
         </DialogHeader>
         <div className="space-y-4 py-4">
           <div className="grid grid-cols-4 gap-3">

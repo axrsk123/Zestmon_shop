@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Trophy, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -63,6 +63,7 @@ const WheelGame = ({ isOpen, onClose, onBack }: WheelGameProps) => {
             <Trophy className="h-5 w-5" />
             Prize Wheel
           </DialogTitle>
+          <DialogDescription>Spin the wheel to win exciting prizes!</DialogDescription>
         </DialogHeader>
         <div className="space-y-4 py-4">
           <div className="relative w-full max-w-md mx-auto aspect-square">

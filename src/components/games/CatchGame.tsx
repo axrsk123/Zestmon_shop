@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Trophy, ArrowLeft } from "lucide-react";
 
@@ -13,7 +13,9 @@ const CatchGame = ({ isOpen, onClose, onBack }: CatchGameProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
-  const [highScore, setHighScore] = useState(0);
+  const [highScore, setHighScore] = useState(() => {
+    return parseInt(localStorage.getItem("catch-highscore") || "0");
+  });
   const [gameOver, setGameOver] = useState(false);
   const gameStateRef = useRef({
     basketX: 250,
@@ -111,7 +113,9 @@ const CatchGame = ({ isOpen, onClose, onBack }: CatchGameProps) => {
             if (state.lives <= 0) {
               setGameOver(true);
               if (state.score > highScore) {
-                setHighScore(state.score);
+                const newHighScore = state.score;
+                setHighScore(newHighScore);
+                localStorage.setItem("catch-highscore", newHighScore.toString());
               }
             }
           }
@@ -158,6 +162,7 @@ const CatchGame = ({ isOpen, onClose, onBack }: CatchGameProps) => {
             <Trophy className="h-5 w-5" />
             Lemon Catch - High Score: {highScore}
           </DialogTitle>
+          <DialogDescription>Catch lemons and avoid bombs!</DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
           <canvas

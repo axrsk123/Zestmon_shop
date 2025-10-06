@@ -1,6 +1,7 @@
 import { X, Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CartItem } from "@/types/product";
+import { useNavigate } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -19,6 +20,7 @@ interface CartProps {
 }
 
 const Cart = ({ items, isOpen, onClose, onUpdateQuantity, onRemoveItem }: CartProps) => {
+  const navigate = useNavigate();
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   
   return (
@@ -111,8 +113,9 @@ const Cart = ({ items, isOpen, onClose, onUpdateQuantity, onRemoveItem }: CartPr
                   className="w-full" 
                   size="lg"
                   onClick={() => {
-                    // In a real app, this would redirect to checkout
-                    alert(`Proceeding to checkout with ${items.length} item(s)\nTotal: $${total.toFixed(2)}`);
+                    localStorage.setItem("cart", JSON.stringify(items));
+                    navigate("/checkout");
+                    onClose();
                   }}
                 >
                   Checkout

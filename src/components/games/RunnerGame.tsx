@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Trophy, ArrowLeft } from "lucide-react";
 
@@ -12,7 +12,9 @@ interface RunnerGameProps {
 const RunnerGame = ({ isOpen, onClose, onBack }: RunnerGameProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(0);
+  const [highScore, setHighScore] = useState(() => {
+    return parseInt(localStorage.getItem("runner-highscore") || "0");
+  });
   const [gameOver, setGameOver] = useState(false);
   const gameStateRef = useRef({
     playerY: 150,
@@ -122,7 +124,9 @@ const RunnerGame = ({ isOpen, onClose, onBack }: RunnerGameProps) => {
         ) {
           setGameOver(true);
           if (state.score > highScore) {
-            setHighScore(state.score);
+            const newHighScore = state.score;
+            setHighScore(newHighScore);
+            localStorage.setItem("runner-highscore", newHighScore.toString());
           }
         }
 
@@ -167,6 +171,7 @@ const RunnerGame = ({ isOpen, onClose, onBack }: RunnerGameProps) => {
             <Trophy className="h-5 w-5" />
             Zestmon Runner - High Score: {highScore}
           </DialogTitle>
+          <DialogDescription>Jump over obstacles and score points!</DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
           <canvas
