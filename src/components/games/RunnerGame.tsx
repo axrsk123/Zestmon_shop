@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Trophy } from "lucide-react";
+import { Trophy, ArrowLeft } from "lucide-react";
 
-interface MiniGameProps {
+interface RunnerGameProps {
   isOpen: boolean;
   onClose: () => void;
+  onBack: () => void;
 }
 
-const MiniGame = ({ isOpen, onClose }: MiniGameProps) => {
+const RunnerGame = ({ isOpen, onClose, onBack }: RunnerGameProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
@@ -80,11 +81,9 @@ const MiniGame = ({ isOpen, onClose }: MiniGameProps) => {
     const gameLoop = (timestamp: number) => {
       const state = gameStateRef.current;
 
-      // Clear canvas
       ctx.fillStyle = "hsl(var(--background))";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Update player physics
       state.playerVelocity += GRAVITY;
       state.playerY += state.playerVelocity;
 
@@ -94,15 +93,12 @@ const MiniGame = ({ isOpen, onClose }: MiniGameProps) => {
         state.isJumping = false;
       }
 
-      // Draw ground
       ctx.fillStyle = "hsl(var(--muted))";
       ctx.fillRect(0, GROUND_Y + PLAYER_SIZE, canvas.width, 10);
 
-      // Draw player (lemon bottle)
       ctx.fillStyle = "hsl(var(--primary))";
       ctx.fillRect(50, state.playerY, PLAYER_SIZE, PLAYER_SIZE);
 
-      // Add obstacles
       if (timestamp - lastObstacleTime > 1500) {
         const height = 20 + Math.random() * 30;
         state.obstacles.push({
@@ -113,15 +109,12 @@ const MiniGame = ({ isOpen, onClose }: MiniGameProps) => {
         lastObstacleTime = timestamp;
       }
 
-      // Update and draw obstacles
       state.obstacles = state.obstacles.filter((obstacle) => {
         obstacle.x -= OBSTACLE_SPEED;
 
-        // Draw obstacle
         ctx.fillStyle = "hsl(var(--destructive))";
         ctx.fillRect(obstacle.x, GROUND_Y + PLAYER_SIZE - obstacle.height, obstacle.width, obstacle.height);
 
-        // Check collision
         if (
           obstacle.x < 50 + PLAYER_SIZE &&
           obstacle.x + obstacle.width > 50 &&
@@ -133,7 +126,6 @@ const MiniGame = ({ isOpen, onClose }: MiniGameProps) => {
           }
         }
 
-        // Update score
         if (obstacle.x + obstacle.width < 50 && obstacle.x + obstacle.width > 50 - OBSTACLE_SPEED) {
           state.score += 1;
           setScore(state.score);
@@ -142,7 +134,6 @@ const MiniGame = ({ isOpen, onClose }: MiniGameProps) => {
         return obstacle.x > -obstacle.width;
       });
 
-      // Draw score
       ctx.fillStyle = "hsl(var(--foreground))";
       ctx.font = "20px Arial";
       ctx.fillText(`Score: ${state.score}`, 10, 30);
@@ -188,10 +179,13 @@ const MiniGame = ({ isOpen, onClose }: MiniGameProps) => {
             Press SPACE or click to jump! Avoid the obstacles and score points.
           </div>
           <div className="flex justify-center gap-4">
+            <Button onClick={onBack} variant="outline">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Menu
+            </Button>
             <Button onClick={() => setGameOver(false)} variant="outline">
               Restart
             </Button>
-            <Button onClick={onClose}>Close</Button>
           </div>
         </div>
       </DialogContent>
@@ -199,4 +193,4 @@ const MiniGame = ({ isOpen, onClose }: MiniGameProps) => {
   );
 };
 
-export default MiniGame;
+export default RunnerGame;

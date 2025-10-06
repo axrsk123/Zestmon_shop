@@ -5,7 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import Cart from "@/components/Cart";
 import About from "@/components/About";
 import SearchDialog from "@/components/SearchDialog";
-import MiniGame from "@/components/MiniGame";
+import GameHub from "@/components/games/GameHub";
 import { products } from "@/data/products";
 import { CartItem, Product } from "@/types/product";
 import { useToast } from "@/hooks/use-toast";
@@ -102,7 +102,7 @@ const Index = () => {
         onSelectProduct={handleAddToCart}
       />
 
-      <MiniGame
+      <GameHub
         isOpen={isGameOpen}
         onClose={() => setIsGameOpen(false)}
       />
