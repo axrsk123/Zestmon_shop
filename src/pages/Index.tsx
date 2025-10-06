@@ -5,14 +5,18 @@ import ProductCard from "@/components/ProductCard";
 import Cart from "@/components/Cart";
 import About from "@/components/About";
 import SearchDialog from "@/components/SearchDialog";
+import MiniGame from "@/components/MiniGame";
 import { products } from "@/data/products";
 import { CartItem, Product } from "@/types/product";
 import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { Gamepad2 } from "lucide-react";
 
 const Index = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isGameOpen, setIsGameOpen] = useState(false);
   const { toast } = useToast();
 
   const handleAddToCart = (product: Product) => {
@@ -97,6 +101,20 @@ const Index = () => {
         onClose={() => setIsSearchOpen(false)}
         onSelectProduct={handleAddToCart}
       />
+
+      <MiniGame
+        isOpen={isGameOpen}
+        onClose={() => setIsGameOpen(false)}
+      />
+
+      <Button
+        onClick={() => setIsGameOpen(true)}
+        size="icon"
+        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg hover:scale-110 transition-transform z-50"
+        variant="hero"
+      >
+        <Gamepad2 className="h-6 w-6" />
+      </Button>
     </div>
   );
 };
