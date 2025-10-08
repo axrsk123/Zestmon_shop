@@ -10,7 +10,7 @@ import { products } from "@/data/products";
 import { CartItem, Product } from "@/types/product";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { Gamepad2 } from "lucide-react";
+import { Gamepad2, Sparkles, Trophy, Zap, Gift } from "lucide-react";
 
 const Index = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -110,10 +110,59 @@ const Index = () => {
       <Button
         onClick={() => setIsGameOpen(true)}
         size="icon"
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg hover:scale-110 transition-transform z-50"
+        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg hover:scale-110 transition-transform z-50 animate-pulse"
         variant="hero"
       >
         <Gamepad2 className="h-6 w-6" />
+      </Button>
+
+      <Button
+        onClick={() => toast({ title: "Easter Egg!", description: "🎉 You found a secret button! Keep exploring..." })}
+        size="icon"
+        className="fixed bottom-24 right-6 h-12 w-12 rounded-full shadow-lg hover:scale-110 transition-transform z-50 opacity-30 hover:opacity-100"
+        variant="outline"
+      >
+        <Sparkles className="h-5 w-5" />
+      </Button>
+
+      <Button
+        onClick={() => {
+          const randomProduct = products[Math.floor(Math.random() * products.length)];
+          handleAddToCart(randomProduct);
+          toast({ title: "Lucky Pick!", description: `🎲 Random flavor added: ${randomProduct.name}` });
+        }}
+        size="icon"
+        className="fixed bottom-6 left-6 h-12 w-12 rounded-full shadow-lg hover:scale-110 transition-transform z-50 opacity-40 hover:opacity-100"
+        variant="outline"
+      >
+        <Gift className="h-5 w-5" />
+      </Button>
+
+      <Button
+        onClick={() => {
+          setIsCartOpen(true);
+          toast({ title: "Cart Shortcut", description: "🛒 Quick access to your cart!" });
+        }}
+        size="icon"
+        className="fixed top-24 right-6 h-10 w-10 rounded-full shadow-lg hover:scale-110 transition-transform z-40 opacity-20 hover:opacity-100 hidden md:flex"
+        variant="outline"
+      >
+        <Trophy className="h-4 w-4" />
+      </Button>
+
+      <Button
+        onClick={() => {
+          toast({ 
+            title: "Power Up!", 
+            description: "⚡ Extra energy boost! (Not really, but the thought counts!)",
+            duration: 3000
+          });
+        }}
+        size="icon"
+        className="fixed bottom-6 left-24 h-10 w-10 rounded-full shadow-lg hover:scale-110 transition-transform z-50 opacity-20 hover:opacity-100 hidden sm:flex"
+        variant="outline"
+      >
+        <Zap className="h-4 w-4" />
       </Button>
     </div>
   );

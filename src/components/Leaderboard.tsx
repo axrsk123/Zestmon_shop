@@ -19,6 +19,10 @@ const Leaderboard = () => {
       const memory = parseInt(localStorage.getItem("memory-highscore") || "0");
       const catch_ = parseInt(localStorage.getItem("catch-highscore") || "0");
       const pokemon = parseInt(localStorage.getItem("pokemon-highscore") || "0");
+      const quiz = parseInt(localStorage.getItem("quiz-highscore") || "0");
+      const typing = parseInt(localStorage.getItem("typing-highscore") || "0");
+      const clicker = parseInt(localStorage.getItem("clicker-highscore") || "0");
+      const simon = parseInt(localStorage.getItem("simon-highscore") || "0");
 
       setScores({
         "Zestmon Runner": runner,
@@ -26,6 +30,10 @@ const Leaderboard = () => {
         "Flavor Match": memory,
         "Lemon Catch": catch_,
         "Zestmon Battle": pokemon,
+        "Lemon Quiz": quiz,
+        "Speed Typer": typing,
+        "Lemon Clicker": clicker,
+        "Simon Says": simon,
       });
     };
 
@@ -54,13 +62,17 @@ const Leaderboard = () => {
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="all">
-          <TabsList className="grid w-full grid-cols-6">
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="runner">Runner</TabsTrigger>
-            <TabsTrigger value="wheel">Wheel</TabsTrigger>
-            <TabsTrigger value="memory">Memory</TabsTrigger>
-            <TabsTrigger value="catch">Catch</TabsTrigger>
-            <TabsTrigger value="pokemon">Battle</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-5 sm:grid-cols-10 gap-1">
+            <TabsTrigger value="all" className="text-xs sm:text-sm">All</TabsTrigger>
+            <TabsTrigger value="runner" className="text-xs sm:text-sm">Run</TabsTrigger>
+            <TabsTrigger value="catch" className="text-xs sm:text-sm">Catch</TabsTrigger>
+            <TabsTrigger value="pokemon" className="text-xs sm:text-sm">Battle</TabsTrigger>
+            <TabsTrigger value="memory" className="text-xs sm:text-sm">Memory</TabsTrigger>
+            <TabsTrigger value="wheel" className="text-xs sm:text-sm">Wheel</TabsTrigger>
+            <TabsTrigger value="quiz" className="text-xs sm:text-sm">Quiz</TabsTrigger>
+            <TabsTrigger value="typing" className="text-xs sm:text-sm">Type</TabsTrigger>
+            <TabsTrigger value="clicker" className="text-xs sm:text-sm">Click</TabsTrigger>
+            <TabsTrigger value="simon" className="text-xs sm:text-sm">Simon</TabsTrigger>
           </TabsList>
 
           <TabsContent value="all" className="space-y-4 mt-4">
