@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { ShoppingCart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -8,11 +9,17 @@ interface HeaderProps {
 }
 
 const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
+  const navigate = useNavigate();
+  
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-8">
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <h1 
+            className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent cursor-pointer hover:scale-110 transition-transform"
+            onClick={() => navigate("/secret-menu")}
+            title="🤫 Secret Menu"
+          >
             Zestmon
           </h1>
           <nav className="hidden md:flex gap-6">

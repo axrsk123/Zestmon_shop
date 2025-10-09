@@ -12,6 +12,7 @@ import TypingGame from "./TypingGame";
 import ClickerGame from "./ClickerGame";
 import SimonGame from "./SimonGame";
 import Leaderboard from "../Leaderboard";
+import PublicLeaderboard from "../PublicLeaderboard";
 
 interface GameHubProps {
   isOpen: boolean;
@@ -108,6 +109,7 @@ const GameHub = ({ isOpen, onClose }: GameHubProps) => {
         {currentGame === "leaderboard" && (
           <div className="space-y-4">
             <Leaderboard />
+            <PublicLeaderboard />
             <Button onClick={handleBack} variant="outline" className="w-full">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Menu

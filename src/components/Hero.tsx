@@ -1,20 +1,41 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-lemonade.jpg";
 
 const Hero = () => {
+  const navigate = useNavigate();
+  
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-secondary/50 to-background py-20 md:py-32">
       <div className="container">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="flex flex-col gap-6">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-              Refresh Your Day
+              <span 
+                className="cursor-pointer hover:text-accent transition-colors"
+                onClick={() => navigate("/treasure")}
+              >
+                Refresh
+              </span> Your Day
               <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                One Sip at a Time
+                One Sip at a{" "}
+                <span 
+                  className="cursor-pointer hover:opacity-70 transition-opacity"
+                  onClick={() => navigate("/konami")}
+                >
+                  Time
+                </span>
               </span>
             </h1>
             <p className="text-lg text-muted-foreground md:text-xl max-w-[600px]">
-              Handcrafted lemonades made fresh daily with real fruit and natural ingredients. Pure refreshment in every glass.
+              Handcrafted lemonades made{" "}
+              <span 
+                className="cursor-pointer hover:text-primary transition-colors"
+                onClick={() => navigate("/gift-box")}
+              >
+                fresh
+              </span>{" "}
+              daily with real fruit and natural ingredients. Pure refreshment in every glass.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 

@@ -110,7 +110,7 @@ const Index = () => {
       <Button
         onClick={() => setIsGameOpen(true)}
         size="icon"
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg hover:scale-110 transition-transform z-50 animate-pulse"
+        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg hover:scale-110 transition-transform z-50"
         variant="hero"
       >
         <Gamepad2 className="h-6 w-6" />
