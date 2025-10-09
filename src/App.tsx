@@ -11,6 +11,10 @@ import TreasureRoom from "./pages/TreasureRoom";
 import KonamiZone from "./pages/KonamiZone";
 import DevRoom from "./pages/DevRoom";
 import GiftBox from "./pages/GiftBox";
+import Lab from "./pages/Lab";
+import Vault from "./pages/Vault";
+import Matrix from "./pages/Matrix";
+import ControlRoom from "./pages/ControlRoom";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +32,10 @@ const App = () => (
           <Route path="/konami" element={<KonamiZone />} />
           <Route path="/dev-room" element={<DevRoom />} />
           <Route path="/gift-box" element={<GiftBox />} />
+          <Route path="/lab" element={<Lab />} />
+          <Route path="/vault" element={<Vault />} />
+          <Route path="/matrix" element={<Matrix />} />
+          <Route path="/control-room" element={<ControlRoom />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Star, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -9,6 +10,8 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+  const navigate = useNavigate();
+  
   return (
     <Card className="group overflow-hidden transition-all duration-300 hover:shadow-xl border-border/50">
       <div className="relative aspect-square overflow-hidden bg-secondary/20">
@@ -17,7 +20,11 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-semibold">
+        <div 
+          className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-semibold cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+          onClick={() => navigate("/lab")}
+          title="🤫"
+        >
           {product.category}
         </div>
       </div>
@@ -29,10 +36,16 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           {[...Array(5)].map((_, i) => (
             <Star 
               key={i} 
-              className={`h-4 w-4 ${i < product.rating ? 'fill-primary text-primary' : 'fill-muted text-muted'}`}
+              className={`h-4 w-4 cursor-pointer ${i < product.rating ? 'fill-primary text-primary' : 'fill-muted text-muted'} hover:scale-125 transition-transform`}
+              onClick={() => i === 2 && navigate("/vault")}
             />
           ))}
-          <span className="text-sm text-muted-foreground ml-2">({product.rating}.0)</span>
+          <span 
+            className="text-sm text-muted-foreground ml-2 cursor-pointer hover:text-primary transition-colors"
+            onClick={() => navigate("/matrix")}
+          >
+            ({product.rating}.0)
+          </span>
         </div>
         
         <p className="text-sm text-muted-foreground line-clamp-2">

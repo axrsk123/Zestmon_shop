@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
@@ -13,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Gamepad2, Sparkles, Trophy, Zap, Gift } from "lucide-react";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -68,9 +70,21 @@ const Index = () => {
       <section id="products" className="container py-16">
         <div className="flex flex-col gap-8">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight">Fresh Lemonades</h2>
+            <h2 
+              className="text-3xl font-bold tracking-tight cursor-pointer hover:text-accent transition-colors"
+              onClick={() => navigate("/control-room")}
+            >
+              Fresh Lemonades
+            </h2>
             <p className="text-muted-foreground">
-              Discover our handcrafted collection of refreshing lemonade flavors
+              Discover our{" "}
+              <span 
+                className="cursor-pointer hover:text-primary transition-colors"
+                onClick={() => navigate("/matrix")}
+              >
+                handcrafted
+              </span>{" "}
+              collection of refreshing lemonade flavors
             </p>
           </div>
           
