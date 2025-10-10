@@ -2,9 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Home, Sparkles, Trophy, Gift, Zap } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const SecretMenu = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-accent/20 flex items-center justify-center p-4">
@@ -50,6 +52,42 @@ const SecretMenu = () => {
               Gift Box
             </Button>
           </div>
+
+          <div className="grid grid-cols-4 gap-2 mt-4">
+            <Button
+              onClick={() => toast({ title: "Beep", description: "🤖" })}
+              variant="outline"
+              size="sm"
+              className="border-purple-500 text-purple-400"
+            >
+              Beep
+            </Button>
+            <Button
+              onClick={() => toast({ title: "Boop", description: "🎵" })}
+              variant="outline"
+              size="sm"
+              className="border-purple-500 text-purple-400"
+            >
+              Boop
+            </Button>
+            <Button
+              onClick={() => toast({ title: "Buzz", description: "⚡" })}
+              variant="outline"
+              size="sm"
+              className="border-purple-500 text-purple-400"
+            >
+              Buzz
+            </Button>
+            <Button
+              onClick={() => navigate("/admin-room")}
+              variant="outline"
+              size="sm"
+              className="border-red-500 text-red-400 hover:bg-red-500/10"
+            >
+              🛡️
+            </Button>
+          </div>
+
           <Button
             onClick={() => navigate("/")}
             className="w-full"

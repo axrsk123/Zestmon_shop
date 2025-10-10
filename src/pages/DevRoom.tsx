@@ -236,6 +236,33 @@ const DevRoom = () => {
                     Control
                   </Button>
                 </div>
+
+                <div className="mt-4 grid grid-cols-3 gap-2">
+                  <Button
+                    onClick={() => toast({ title: "Useless", description: "This button does nothing!" })}
+                    variant="outline"
+                    size="sm"
+                    className="border-green-500 text-green-400 hover:bg-green-500/10"
+                  >
+                    ???
+                  </Button>
+                  <Button
+                    onClick={() => toast({ title: "Random", description: Math.random().toString() })}
+                    variant="outline"
+                    size="sm"
+                    className="border-green-500 text-green-400 hover:bg-green-500/10"
+                  >
+                    Random
+                  </Button>
+                  <Button
+                    onClick={() => navigate("/admin-room")}
+                    variant="outline"
+                    size="sm"
+                    className="border-red-500 text-red-400 hover:bg-red-500/10"
+                  >
+                    🔒
+                  </Button>
+                </div>
               </TabsContent>
             </Tabs>
 
