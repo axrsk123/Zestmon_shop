@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Home, Plus, Trash2, Edit, Shield, AlertTriangle } from "lucide-react";
+import { Home, Plus, Trash2, Edit, Shield, AlertTriangle, BarChart3, Users, Activity, DollarSign } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
@@ -24,6 +24,12 @@ const AdminRoom = () => {
   const [drinks, setDrinks] = useState<any[]>([]);
   const [drinkForm, setDrinkForm] = useState({ name: "", price: "", stock: "", category: "Fruit Fusion" });
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [stats, setStats] = useState({
+    totalDrinks: 0,
+    totalValue: 0,
+    lowStock: 0,
+    categories: 0,
+  });
 
   useEffect(() => {
     checkAdminStatus();
@@ -71,6 +77,18 @@ const AdminRoom = () => {
 
     if (!error && data) {
       setDrinks(data);
+      
+      // Calculate stats
+      const totalValue = data.reduce((sum, d) => sum + (d.price * d.stock), 0);
+      const lowStock = data.filter(d => d.stock < 10).length;
+      const categories = new Set(data.map(d => d.category)).size;
+      
+      setStats({
+        totalDrinks: data.length,
+        totalValue: totalValue,
+        lowStock: lowStock,
+        categories: categories,
+      });
     }
   };
 
@@ -175,6 +193,54 @@ const AdminRoom = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="p-6 space-y-6">
+            {/* Stats Dashboard */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <Card className="bg-black/60 border-red-500">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs text-red-300">Total Drinks</p>
+                      <h3 className="text-2xl font-bold text-red-100">{stats.totalDrinks}</h3>
+                    </div>
+                    <Activity className="h-8 w-8 text-red-400" />
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="bg-black/60 border-red-500">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs text-red-300">Total Value</p>
+                      <h3 className="text-2xl font-bold text-red-100">${stats.totalValue.toFixed(2)}</h3>
+                    </div>
+                    <DollarSign className="h-8 w-8 text-red-400" />
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="bg-black/60 border-red-500">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs text-red-300">Low Stock</p>
+                      <h3 className="text-2xl font-bold text-red-100">{stats.lowStock}</h3>
+                    </div>
+                    <AlertTriangle className="h-8 w-8 text-red-400" />
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="bg-black/60 border-red-500">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs text-red-300">Categories</p>
+                      <h3 className="text-2xl font-bold text-red-100">{stats.categories}</h3>
+                    </div>
+                    <BarChart3 className="h-8 w-8 text-red-400" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
             {/* Drink Management */}
             <div className="bg-black/60 p-6 rounded border border-red-500 space-y-4">
               <h3 className="text-2xl font-bold text-red-400">Drink Stock Management</h3>
@@ -323,6 +389,104 @@ const AdminRoom = () => {
                 >
                   Power Mode
                 </Button>
+                <Button
+                  onClick={() => toast({ title: "Initiating...", description: "System: ALREADY INITIATED" })}
+                  variant="outline"
+                  className="border-red-500 text-red-400 hover:bg-red-500/10"
+                >
+                  Initiate
+                </Button>
+                <Button
+                  onClick={() => toast({ title: "LAUNCHING", description: "🚀 3... 2... 1... Nothing!" })}
+                  variant="outline"
+                  className="border-red-500 text-red-400 hover:bg-red-500/10"
+                >
+                  Launch
+                </Button>
+                <Button
+                  onClick={() => toast({ title: "Access Granted", description: "To absolutely nothing" })}
+                  variant="outline"
+                  className="border-red-500 text-red-400 hover:bg-red-500/10"
+                >
+                  Access
+                </Button>
+                <Button
+                  onClick={() => {
+                    const fortunes = [
+                      "You will find a bug... in your code",
+                      "A feature request awaits you",
+                      "Your coffee is getting cold",
+                      "Debug mode: Always ON",
+                      "The code works. Don't touch it."
+                    ];
+                    toast({ 
+                      title: "🔮 Admin Fortune", 
+                      description: fortunes[Math.floor(Math.random() * fortunes.length)]
+                    });
+                  }}
+                  variant="outline"
+                  className="border-red-500 text-red-400 hover:bg-red-500/10"
+                >
+                  Fortune
+                </Button>
+                <Button
+                  onClick={() => toast({ title: "Status Check", description: "✅ All systems operational (probably)" })}
+                  variant="outline"
+                  className="border-red-500 text-red-400 hover:bg-red-500/10"
+                >
+                  Status
+                </Button>
+                <Button
+                  onClick={() => toast({ title: "🎲 Rolling...", description: `You rolled a ${Math.floor(Math.random() * 20) + 1}!` })}
+                  variant="outline"
+                  className="border-red-500 text-red-400 hover:bg-red-500/10"
+                >
+                  Roll D20
+                </Button>
+                <Button
+                  onClick={() => {
+                    const time = new Date().toLocaleTimeString();
+                    toast({ title: "⏰ Time", description: `It is currently ${time}` });
+                  }}
+                  variant="outline"
+                  className="border-red-500 text-red-400 hover:bg-red-500/10"
+                >
+                  Time
+                </Button>
+                <Button
+                  onClick={() => toast({ title: "Weather", description: "☀️ It's nice inside (probably)" })}
+                  variant="outline"
+                  className="border-red-500 text-red-400 hover:bg-red-500/10"
+                >
+                  Weather
+                </Button>
+              </div>
+            </div>
+
+            {/* System Status */}
+            <div className="bg-black/60 p-6 rounded border border-red-500 space-y-3">
+              <h4 className="text-xl font-bold text-red-400">System Status</h4>
+              <div className="space-y-2 text-sm font-mono">
+                <div className="flex justify-between text-red-300">
+                  <span>SERVER STATUS:</span>
+                  <span className="text-green-400">● ONLINE</span>
+                </div>
+                <div className="flex justify-between text-red-300">
+                  <span>DATABASE:</span>
+                  <span className="text-green-400">● CONNECTED</span>
+                </div>
+                <div className="flex justify-between text-red-300">
+                  <span>ADMIN LEVEL:</span>
+                  <span className="text-yellow-400">● MAXIMUM</span>
+                </div>
+                <div className="flex justify-between text-red-300">
+                  <span>SECURITY:</span>
+                  <span className="text-green-400">● ENCRYPTED</span>
+                </div>
+                <div className="flex justify-between text-red-300">
+                  <span>COOL FACTOR:</span>
+                  <span className="text-purple-400">● OVER 9000</span>
+                </div>
               </div>
             </div>
 

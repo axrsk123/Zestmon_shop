@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCart, Search, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 
 interface HeaderProps {
   cartItemCount: number;
@@ -10,6 +12,19 @@ interface HeaderProps {
 
 const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsLoggedIn(!!session);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setIsLoggedIn(!!session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
   
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -56,12 +71,12 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
             <Search className="h-5 w-5" />
           </Button>
           <Button 
-            variant="outline" 
+            variant={isLoggedIn ? "default" : "outline"}
             size="sm"
-            onClick={() => navigate("/auth")}
+            onClick={() => navigate(isLoggedIn ? "/profile" : "/auth")}
           >
             <User className="h-4 w-4 mr-2" />
-            Login
+            {isLoggedIn ? "Profile" : "Login"}
           </Button>
           <Button
             variant="ghost" 
