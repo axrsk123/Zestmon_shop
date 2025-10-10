@@ -16,6 +16,7 @@ import Vault from "./pages/Vault";
 import Matrix from "./pages/Matrix";
 import ControlRoom from "./pages/ControlRoom";
 import AdminRoom from "./pages/AdminRoom";
+import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/secret-menu" element={<SecretMenu />} />
           <Route path="/treasure" element={<TreasureRoom />} />

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ShoppingCart, Search } from "lucide-react";
+import { ShoppingCart, Search, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
@@ -54,6 +54,14 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
             onClick={onSearchClick}
           >
             <Search className="h-5 w-5" />
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={() => navigate("/auth")}
+          >
+            <User className="h-4 w-4 mr-2" />
+            Login
           </Button>
           <Button
             variant="ghost" 
