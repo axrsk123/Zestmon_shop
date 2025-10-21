@@ -43,7 +43,13 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
               className="text-sm font-medium transition-colors hover:text-primary"
               onClick={(e) => {
                 e.preventDefault();
-                document.querySelector('#products')?.scrollIntoView({ behavior: 'smooth' });
+                // Ak sme na hlavnej stránke, scroll na products sekciu
+                if (window.location.pathname === '/') {
+                  document.querySelector('#products')?.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  // Ak sme na inej stránke, naviguj na hlavnú stránku
+                  navigate('/');
+                }
               }}
             >
               Lemonades
