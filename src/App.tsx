@@ -18,6 +18,7 @@ import ControlRoom from "./pages/ControlRoom";
 import AdminRoom from "./pages/AdminRoom";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
+import AboutUs from "./pages/AboutUs";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/matrix" element={<Matrix />} />
           <Route path="/control-room" element={<ControlRoom />} />
           <Route path="/admin-room" element={<AdminRoom />} />
+          <Route path="/about-us" element={<AboutUs />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

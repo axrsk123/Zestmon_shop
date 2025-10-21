@@ -48,16 +48,12 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
             >
               Lemonades
             </a>
-            <a 
-              href="#about" 
+            <button 
               className="text-sm font-medium transition-colors hover:text-primary"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => navigate("/about-us")}
             >
               About Us
-            </a>
+            </button>
           </nav>
         </div>
         
