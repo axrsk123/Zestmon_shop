@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Home, Plus, Trash2, Edit, Shield, AlertTriangle, BarChart3, Users, Activity, DollarSign } from "lucide-react";
+import { Home, Plus, Trash2, Edit, Shield, AlertTriangle, BarChart3, Activity, DollarSign, Package } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
+import { AdminAIChat } from "@/components/AdminAIChat";
 
 const drinkSchema = z.object({
   name: z.string().trim().min(1).max(100),
@@ -343,122 +344,45 @@ const AdminRoom = () => {
               </div>
             </div>
 
-            {/* Useless Buttons */}
+            {/* AI Assistant */}
+            <AdminAIChat />
+
+            {/* Quick Actions */}
             <div className="bg-black/60 p-6 rounded border border-red-500 space-y-3">
-              <h4 className="text-xl font-bold text-red-400">Useless Admin Controls</h4>
-              <div className="grid grid-cols-3 gap-2">
+              <h4 className="text-xl font-bold text-red-400 flex items-center gap-2">
+                <Package className="h-5 w-5" />
+                Quick Actions
+              </h4>
+              <div className="grid grid-cols-2 gap-3">
                 <Button
-                  onClick={() => toast({ title: "Beep Boop", description: "Button pressed successfully" })}
+                  onClick={() => {
+                    const lowStockItems = drinks.filter(d => d.stock < 10);
+                    if (lowStockItems.length > 0) {
+                      toast({ 
+                        title: "Low Stock Alert", 
+                        description: `${lowStockItems.length} items need restocking` 
+                      });
+                    } else {
+                      toast({ title: "All Good", description: "All items are well stocked" });
+                    }
+                  }}
                   variant="outline"
                   className="border-red-500 text-red-400 hover:bg-red-500/10"
                 >
-                  Do Nothing
-                </Button>
-                <Button
-                  onClick={() => toast({ title: "🎉", description: "Congratulations! Nothing happened." })}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Press Me
-                </Button>
-                <Button
-                  onClick={() => toast({ title: "Error 404", description: "Button functionality not found" })}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Mystery
-                </Button>
-                <Button
-                  onClick={() => toast({ title: "Success!", description: "Successfully did nothing" })}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Click Here
-                </Button>
-                <Button
-                  onClick={() => toast({ title: "Loading...", description: "Still loading... forever" })}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Load
-                </Button>
-                <Button
-                  onClick={() => toast({ title: "Admin Power!", description: "You feel powerful but nothing changed" })}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Power Mode
-                </Button>
-                <Button
-                  onClick={() => toast({ title: "Initiating...", description: "System: ALREADY INITIATED" })}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Initiate
-                </Button>
-                <Button
-                  onClick={() => toast({ title: "LAUNCHING", description: "🚀 3... 2... 1... Nothing!" })}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Launch
-                </Button>
-                <Button
-                  onClick={() => toast({ title: "Access Granted", description: "To absolutely nothing" })}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Access
+                  Check Low Stock
                 </Button>
                 <Button
                   onClick={() => {
-                    const fortunes = [
-                      "You will find a bug... in your code",
-                      "A feature request awaits you",
-                      "Your coffee is getting cold",
-                      "Debug mode: Always ON",
-                      "The code works. Don't touch it."
-                    ];
+                    const avgPrice = drinks.reduce((sum, d) => sum + d.price, 0) / drinks.length;
                     toast({ 
-                      title: "🔮 Admin Fortune", 
-                      description: fortunes[Math.floor(Math.random() * fortunes.length)]
+                      title: "Price Analytics", 
+                      description: `Average price: $${avgPrice.toFixed(2)}` 
                     });
                   }}
                   variant="outline"
                   className="border-red-500 text-red-400 hover:bg-red-500/10"
                 >
-                  Fortune
-                </Button>
-                <Button
-                  onClick={() => toast({ title: "Status Check", description: "✅ All systems operational (probably)" })}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Status
-                </Button>
-                <Button
-                  onClick={() => toast({ title: "🎲 Rolling...", description: `You rolled a ${Math.floor(Math.random() * 20) + 1}!` })}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Roll D20
-                </Button>
-                <Button
-                  onClick={() => {
-                    const time = new Date().toLocaleTimeString();
-                    toast({ title: "⏰ Time", description: `It is currently ${time}` });
-                  }}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Time
-                </Button>
-                <Button
-                  onClick={() => toast({ title: "Weather", description: "☀️ It's nice inside (probably)" })}
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500/10"
-                >
-                  Weather
+                  Price Analysis
                 </Button>
               </div>
             </div>
