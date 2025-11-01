@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ShoppingCart, Search, User } from "lucide-react";
+import { ShoppingCart, Search, User, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -13,14 +13,35 @@ interface HeaderProps {
 const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setIsLoggedIn(!!session);
+      if (session?.user) {
+        supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", session.user.id)
+          .eq("role", "admin")
+          .single()
+          .then(({ data }) => setIsAdmin(!!data));
+      }
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
       setIsLoggedIn(!!session);
+      if (session?.user) {
+        supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", session.user.id)
+          .eq("role", "admin")
+          .single()
+          .then(({ data }) => setIsAdmin(!!data));
+      } else {
+        setIsAdmin(false);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -72,6 +93,17 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
           >
             <Search className="h-5 w-5" />
           </Button>
+          {isAdmin && (
+            <Button 
+              variant="outline"
+              size="icon"
+              onClick={() => navigate('/admin-room')}
+              className="border-red-500 text-red-500 hover:bg-red-500/10"
+              title="Admin Room"
+            >
+              <Shield className="h-5 w-5" />
+            </Button>
+          )}
           <Button 
             variant={isLoggedIn ? "default" : "outline"}
             size="sm"
