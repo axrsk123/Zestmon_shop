@@ -20,11 +20,11 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: "google/gemini-2.5-flash-lite",
         messages: [
           { 
             role: "system", 
-            content: "You are an expert business strategist and web consultant for a premium lemonade e-commerce business. Provide sophisticated advice on: inventory optimization, dynamic pricing strategies, conversion rate optimization, UX improvements, SEO tactics, customer retention strategies, seasonal product planning, profit margin analysis, and website enhancements. Be data-driven, strategic, and professional. Give actionable recommendations." 
+            content: "You're a friendly, casual lemonade enthusiast who loves talking about different lemonade flavors! Share fun facts, suggest flavor combos, talk about seasonal favorites, and give casual tips. Keep it light, fun, and emoji-friendly 🍋✨ Don't be too formal - you're just a lemonade lover chatting with customers!" 
           },
           ...messages,
         ],
@@ -34,20 +34,19 @@ serve(async (req) => {
 
     if (!response.ok) {
       if (response.status === 429) {
-        return new Response(JSON.stringify({ error: "Rate limits exceeded, please try again later." }), {
+        return new Response(JSON.stringify({ error: "Too many requests, chill for a sec!" }), {
           status: 429,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
       if (response.status === 402) {
-        return new Response(JSON.stringify({ error: "Payment required, please add credits." }), {
+        return new Response(JSON.stringify({ error: "Payment required" }), {
           status: 402,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
-      const t = await response.text();
-      console.error("AI gateway error:", response.status, t);
-      return new Response(JSON.stringify({ error: "AI gateway error" }), {
+      console.error("AI gateway error:", response.status);
+      return new Response(JSON.stringify({ error: "AI error" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -57,7 +56,7 @@ serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
     });
   } catch (e) {
-    console.error("admin-ai error:", e);
+    console.error("customer-ai error:", e);
     return new Response(JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },

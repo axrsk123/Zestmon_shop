@@ -123,7 +123,7 @@ const AdminRoom = () => {
         return;
       }
       
-      toast({ title: "Success", description: "Drink updated!" });
+      toast({ title: "Success", description: "Drink updated!", duration: 4000 });
       setEditingId(null);
     } else {
       const { error } = await supabase
@@ -135,7 +135,7 @@ const AdminRoom = () => {
         return;
       }
       
-      toast({ title: "Success", description: "Drink added!" });
+      toast({ title: "Success", description: "Drink added!", duration: 4000 });
     }
 
     setDrinkForm({ name: "", price: "", stock: "", category: "Fruit Fusion" });
@@ -163,7 +163,7 @@ const AdminRoom = () => {
       return;
     }
 
-    toast({ title: "Deleted", description: "Drink removed from inventory" });
+    toast({ title: "Deleted", description: "Drink removed from inventory", duration: 4000 });
     fetchDrinks();
   };
 
@@ -360,10 +360,11 @@ const AdminRoom = () => {
                     if (lowStockItems.length > 0) {
                       toast({ 
                         title: "Low Stock Alert", 
-                        description: `${lowStockItems.length} items need restocking` 
+                        description: `${lowStockItems.length} items need restocking`,
+                        duration: 4000
                       });
                     } else {
-                      toast({ title: "All Good", description: "All items are well stocked" });
+                      toast({ title: "All Good", description: "All items are well stocked", duration: 4000 });
                     }
                   }}
                   variant="outline"
@@ -376,7 +377,8 @@ const AdminRoom = () => {
                     const avgPrice = drinks.reduce((sum, d) => sum + d.price, 0) / drinks.length;
                     toast({ 
                       title: "Price Analytics", 
-                      description: `Average price: $${avgPrice.toFixed(2)}` 
+                      description: `Average price: $${avgPrice.toFixed(2)}`,
+                      duration: 4000
                     });
                   }}
                   variant="outline"

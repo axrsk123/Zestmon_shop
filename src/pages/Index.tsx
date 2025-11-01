@@ -7,11 +7,12 @@ import Cart from "@/components/Cart";
 import About from "@/components/About";
 import SearchDialog from "@/components/SearchDialog";
 import GameHub from "@/components/games/GameHub";
+import { CustomerAIChat } from "@/components/CustomerAIChat";
 import { products } from "@/data/products";
 import { CartItem, Product } from "@/types/product";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { Gamepad2, Sparkles, Trophy, Zap, Gift } from "lucide-react";
+import { Gamepad2, Sparkles, Trophy, Zap, Gift, MessageCircle } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Index = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isGameOpen, setIsGameOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const { toast } = useToast();
 
   const handleAddToCart = (product: Product) => {
@@ -28,6 +30,7 @@ const Index = () => {
         toast({
           title: "Updated cart",
           description: `Increased quantity of ${product.name}`,
+          duration: 4000,
         });
         return prev.map((item) =>
           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
@@ -36,6 +39,7 @@ const Index = () => {
       toast({
         title: "Added to cart",
         description: `${product.name} has been added to your cart`,
+        duration: 4000,
       });
       return [...prev, { ...product, quantity: 1 }];
     });
@@ -53,6 +57,7 @@ const Index = () => {
     toast({
       title: "Removed from cart",
       description: "Item has been removed from your cart",
+      duration: 4000,
     });
   };
 
@@ -121,29 +126,43 @@ const Index = () => {
         onClose={() => setIsGameOpen(false)}
       />
 
+      {isChatOpen && (
+        <div className="fixed bottom-6 right-24 z-50 animate-in slide-in-from-bottom-5">
+          <CustomerAIChat onClose={() => setIsChatOpen(false)} />
+        </div>
+      )}
+
       <Button
-        onClick={() => setIsGameOpen(true)}
+        onClick={() => setIsChatOpen(!isChatOpen)}
         size="icon"
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg hover:scale-110 transition-transform z-50"
-        variant="hero"
+        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg hover:scale-110 transition-transform z-50 bg-yellow-500 hover:bg-yellow-600"
       >
-        <Gamepad2 className="h-6 w-6" />
+        <MessageCircle className="h-6 w-6" />
       </Button>
 
       <Button
-        onClick={() => toast({ title: "Easter Egg!", description: "🎉 You found a secret button! Keep exploring..." })}
+        onClick={() => setIsGameOpen(true)}
         size="icon"
-        className="fixed bottom-24 right-6 h-12 w-12 rounded-full shadow-lg hover:scale-110 transition-transform z-50 opacity-30 hover:opacity-100"
+        className="fixed bottom-24 right-6 h-12 w-12 rounded-full shadow-lg hover:scale-110 transition-transform z-50"
+        variant="hero"
+      >
+        <Gamepad2 className="h-5 w-5" />
+      </Button>
+
+      <Button
+        onClick={() => toast({ title: "Easter Egg!", description: "🎉 You found a secret button! Keep exploring...", duration: 4000 })}
+        size="icon"
+        className="fixed bottom-40 right-6 h-10 w-10 rounded-full shadow-lg hover:scale-110 transition-transform z-50 opacity-30 hover:opacity-100"
         variant="outline"
       >
-        <Sparkles className="h-5 w-5" />
+        <Sparkles className="h-4 w-4" />
       </Button>
 
       <Button
         onClick={() => {
           const randomProduct = products[Math.floor(Math.random() * products.length)];
           handleAddToCart(randomProduct);
-          toast({ title: "Lucky Pick!", description: `🎲 Random flavor added: ${randomProduct.name}` });
+          toast({ title: "Lucky Pick!", description: `🎲 Random flavor added: ${randomProduct.name}`, duration: 4000 });
         }}
         size="icon"
         className="fixed bottom-6 left-6 h-12 w-12 rounded-full shadow-lg hover:scale-110 transition-transform z-50 opacity-40 hover:opacity-100"
@@ -155,7 +174,7 @@ const Index = () => {
       <Button
         onClick={() => {
           setIsCartOpen(true);
-          toast({ title: "Cart Shortcut", description: "🛒 Quick access to your cart!" });
+          toast({ title: "Cart Shortcut", description: "🛒 Quick access to your cart!", duration: 4000 });
         }}
         size="icon"
         className="fixed top-24 right-6 h-10 w-10 rounded-full shadow-lg hover:scale-110 transition-transform z-40 opacity-20 hover:opacity-100 hidden md:flex"
@@ -169,7 +188,7 @@ const Index = () => {
           toast({ 
             title: "Power Up!", 
             description: "⚡ Extra energy boost! (Not really, but the thought counts!)",
-            duration: 3000
+            duration: 4000
           });
         }}
         size="icon"
