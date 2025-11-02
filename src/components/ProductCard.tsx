@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { Star, ShoppingCart } from "lucide-react";
+import { Star, ShoppingCart, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Product } from "@/types/product";
 
 interface ProductCardProps {
@@ -26,6 +27,15 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           title="🤫"
         >
           {product.category}
+        </div>
+        <div className="absolute top-3 left-3">
+          <Badge 
+            variant={product.stock === 0 ? "destructive" : product.stock! < 20 ? "outline" : "secondary"}
+            className="gap-1"
+          >
+            <Package className="h-3 w-3" />
+            {product.stock === 0 ? "Out of Stock" : `${product.stock} in stock`}
+          </Badge>
         </div>
       </div>
       
@@ -61,9 +71,10 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           onClick={() => onAddToCart(product)}
           size="sm"
           className="gap-2"
+          disabled={product.stock === 0}
         >
           <ShoppingCart className="h-4 w-4" />
-          Add
+          {product.stock === 0 ? "Out of Stock" : "Add"}
         </Button>
       </CardFooter>
     </Card>

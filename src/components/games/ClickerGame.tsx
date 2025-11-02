@@ -49,6 +49,17 @@ const ClickerGame = ({ isOpen, onClose, onBack, onGameEnd }: ClickerGameProps) =
 
   const handleClick = () => {
     setLemons(lemons + clickPower);
+    // Create floating +1 animation effect
+    const button = document.querySelector('.lemon-clicker');
+    if (button) {
+      const float = document.createElement('div');
+      float.textContent = `+${clickPower}`;
+      float.className = 'absolute text-primary font-bold animate-bounce';
+      float.style.left = `${Math.random() * 40 + 30}%`;
+      float.style.top = '20%';
+      button.appendChild(float);
+      setTimeout(() => float.remove(), 800);
+    }
   };
 
   const upgrades = [
@@ -107,7 +118,7 @@ const ClickerGame = ({ isOpen, onClose, onBack, onGameEnd }: ClickerGameProps) =
         <Button
           onClick={handleClick}
           size="lg"
-          className="h-32 w-32 rounded-full text-6xl hover:scale-105 active:scale-95 transition-transform"
+          className="relative lemon-clicker h-32 w-32 rounded-full text-6xl hover:scale-105 active:scale-95 transition-transform shadow-xl"
         >
           🍋
         </Button>

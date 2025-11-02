@@ -27,11 +27,11 @@ const MemoryGame = ({ isOpen, onClose, onBack }: MemoryGameProps) => {
 
   const flavors = [
     { name: "Classic", emoji: "🍋" },
+    { name: "Orange", emoji: "🍊" },
     { name: "Strawberry", emoji: "🍓" },
     { name: "Blueberry", emoji: "🫐" },
     { name: "Peach", emoji: "🍑" },
     { name: "Watermelon", emoji: "🍉" },
-    { name: "Mango", emoji: "🥭" },
   ];
 
   const initializeGame = () => {

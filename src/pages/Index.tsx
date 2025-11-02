@@ -8,7 +8,7 @@ import About from "@/components/About";
 import SearchDialog from "@/components/SearchDialog";
 import GameHub from "@/components/games/GameHub";
 import { CustomerAIChat } from "@/components/CustomerAIChat";
-import { products } from "@/data/products";
+import { useProducts } from "@/hooks/useProducts";
 import { CartItem, Product } from "@/types/product";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,7 @@ import { Gamepad2, Sparkles, Trophy, Zap, Gift, MessageCircle } from "lucide-rea
 
 const Index = () => {
   const navigate = useNavigate();
+  const { products, loading } = useProducts();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
