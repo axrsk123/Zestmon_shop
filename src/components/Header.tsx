@@ -79,7 +79,13 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
               className="text-sm font-medium transition-colors hover:text-primary"
               onClick={() => navigate("/about-us")}
             >
-              About Us
+              About
+            </button>
+            <button 
+              className="text-sm font-medium transition-colors hover:text-primary"
+              onClick={() => navigate("/contact")}
+            >
+              Contact
             </button>
           </nav>
         </div>

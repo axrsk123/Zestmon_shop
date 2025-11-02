@@ -15,6 +15,7 @@ const Profile = () => {
 
   useEffect(() => {
     checkUser();
+    fetchOrders();
   }, []);
 
   const checkUser = async () => {
