@@ -6,6 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import Cart from "@/components/Cart";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
+import VotingPoll from "@/components/VotingPoll";
 import SearchDialog from "@/components/SearchDialog";
 import GameHub from "@/components/games/GameHub";
 import { CustomerAIChat } from "@/components/CustomerAIChat";
@@ -108,6 +109,10 @@ const Index = () => {
       </section>
 
       <About />
+      
+      <section className="container py-20">
+        <VotingPoll />
+      </section>
       
       <Footer />
 
