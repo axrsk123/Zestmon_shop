@@ -71,7 +71,7 @@ const AdminAnalytics = () => {
     // Calculate analytics
     const totalOrders = ordersData?.length || 0;
     const totalRevenue = ordersData?.reduce(
-      (sum, order) => sum + parseFloat(order.total_amount),
+      (sum, order) => sum + Number(order.total_amount),
       0
     ) || 0;
     const completedOrders = ordersData?.filter((o) => o.status === "completed").length || 0;
