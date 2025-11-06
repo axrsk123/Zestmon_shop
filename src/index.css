@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
+    --background: 0 0% 100%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -17,13 +17,13 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 48 96% 53%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 45 93% 47%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 142 76% 96%;
     --secondary-foreground: 222 47% 11%;
 
-    --muted: 60 9% 96%;
+    --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
     --accent: 338 100% 70%;
@@ -34,21 +34,24 @@ All colors MUST be HSL.
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 221 83% 53%;
+    --ring: 45 93% 47%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
     
-    --gradient-primary: linear-gradient(135deg, hsl(48 96% 53%) 0%, hsl(338 100% 70%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(60 100% 97%) 0%, hsl(142 76% 96%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(45 93% 47%) 0%, hsl(338 100% 70%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 96%) 0%, hsl(0 0% 100%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
     
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 25px -3px rgb(0 0 0 / 0.1);
-    --shadow-card: 0 2px 8px rgb(0 0 0 / 0.04);
-    --shadow-card-hover: 0 8px 30px rgb(0 0 0 / 0.12);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.08);
+    --shadow-lg: 0 20px 40px -12px rgb(0 0 0 / 0.15);
+    --shadow-card: 0 2px 12px rgb(0 0 0 / 0.06);
+    --shadow-card-hover: 0 12px 40px rgb(0 0 0 / 0.15);
+    --shadow-elegant: 0 8px 32px -8px rgb(0 0 0 / 0.12);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-spring: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --sidebar-background: 0 0% 98%;
 
