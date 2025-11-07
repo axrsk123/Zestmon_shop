@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import SocialLinks from "@/components/SocialLinks";
 import heroImage from "@/assets/hero-lemonade.jpg";
+import { ArrowRight, Star, Award, Sparkles } from "lucide-react";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -48,14 +49,36 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col gap-6">
-              <Button 
-                variant="default" 
-                size="lg" 
-                className="w-fit text-base shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary"
-                onClick={() => document.querySelector('#products')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Order Now
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button 
+                  variant="default" 
+                  size="lg" 
+                  className="group w-fit text-base shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary"
+                  onClick={() => document.querySelector('#products')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Order Now
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="w-fit text-base border-2 hover:border-primary hover:bg-primary/5"
+                  onClick={() => navigate("/about-us")}
+                >
+                  <Award className="mr-2 h-4 w-4" />
+                  Learn More
+                </Button>
+                <Button 
+                  variant="secondary" 
+                  size="lg"
+                  className="w-fit text-base"
+                  onClick={() => navigate("/contact")}
+                >
+                  <Star className="mr-2 h-4 w-4" />
+                  Contact
+                </Button>
+              </div>
               
               <div className="space-y-3">
                 <p className="text-sm font-semibold text-foreground">Join Our Community:</p>

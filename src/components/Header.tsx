@@ -1,9 +1,10 @@
-import { ShoppingCart, Search, User, Menu, Shield } from "lucide-react";
+import { ShoppingCart, Search, User, Menu, Shield, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import SocialLinks from "@/components/SocialLinks";
+import { useTheme } from "@/components/ThemeProvider";
 
 interface HeaderProps {
   cartItemCount: number;
@@ -13,6 +14,7 @@ interface HeaderProps {
 
 const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
   const navigate = useNavigate();
+  const { theme, setTheme } = useTheme();
   const [user, setUser] = useState<any>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -93,6 +95,15 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
           </div>
           
           <div className="h-6 w-px bg-border hidden lg:block" />
+          
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            title="Toggle theme"
+          >
+            {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+          </Button>
           
           <Button
             variant="ghost"

@@ -77,23 +77,33 @@ const Index = () => {
       
       <section id="products" className="container py-16">
         <div className="flex flex-col gap-8">
-          <div className="space-y-2">
-            <h2 
-              className="text-3xl font-bold tracking-tight cursor-pointer hover:text-accent transition-colors"
-              onClick={() => navigate("/control-room")}
-            >
-              Fresh Lemonades
-            </h2>
-            <p className="text-muted-foreground">
-              Discover our{" "}
-              <span 
-                className="cursor-pointer hover:text-primary transition-colors"
-                onClick={() => navigate("/matrix")}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="space-y-2">
+              <h2 
+                className="text-3xl font-bold tracking-tight cursor-pointer hover:text-accent transition-colors"
+                onClick={() => navigate("/control-room")}
               >
-                handcrafted
-              </span>{" "}
-              collection of refreshing lemonade flavors
-            </p>
+                Fresh Lemonades
+              </h2>
+              <p className="text-muted-foreground">
+                Discover our{" "}
+                <span 
+                  className="cursor-pointer hover:text-primary transition-colors"
+                  onClick={() => navigate("/matrix")}
+                >
+                  handcrafted
+                </span>{" "}
+                collection of refreshing lemonade flavors
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={() => navigate("/about-us")}>
+                Learn More
+              </Button>
+              <Button variant="default" onClick={() => setIsGameOpen(true)}>
+                Play Games
+              </Button>
+            </div>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
