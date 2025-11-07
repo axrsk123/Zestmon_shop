@@ -1,4 +1,4 @@
-import { ShoppingCart, Search, User, Menu, Shield, Sun, Moon } from "lucide-react";
+import { ShoppingCart, Search, User, Menu, Shield, Sun, Moon, Sparkles, Gift, HelpCircle, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -57,34 +57,55 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-8">
-          <h1 
-            className="text-2xl font-bold cursor-pointer bg-gradient-to-r from-primary to-foreground bg-clip-text text-transparent hover:opacity-80 transition-opacity"
-            onClick={() => navigate("/")}
-          >
-            ZESTMON
-          </h1>
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-yellow-400 to-primary opacity-20 blur-sm group-hover:opacity-40 transition-opacity rounded-lg" />
+            <h1 
+              className="relative text-2xl font-bold cursor-pointer bg-gradient-to-r from-primary via-yellow-300 to-primary bg-clip-text text-transparent hover:scale-105 transition-transform"
+              onClick={() => navigate("/")}
+            >
+              ZESTMON
+            </h1>
+          </div>
           
-          <nav className="hidden md:flex gap-6">
+          <nav className="hidden md:flex gap-2">
             <Button
               variant="ghost"
               onClick={() => navigate("/")}
-              className="font-medium"
+              className="font-medium hover:bg-primary/10"
             >
+              <Sparkles className="mr-2 h-4 w-4" />
               Shop
             </Button>
             <Button
               variant="ghost"
               onClick={() => navigate("/about-us")}
-              className="font-medium"
+              className="font-medium hover:bg-primary/10"
             >
+              <Award className="mr-2 h-4 w-4" />
               About
             </Button>
             <Button
               variant="ghost"
               onClick={() => navigate("/contact")}
-              className="font-medium"
+              className="font-medium hover:bg-primary/10"
             >
               Contact
+            </Button>
+            <Button
+              variant="ghost"
+              onClick={() => navigate("/faq")}
+              className="font-medium hover:bg-primary/10"
+            >
+              <HelpCircle className="mr-2 h-4 w-4" />
+              FAQ
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => navigate("/gift-box")}
+              className="font-medium border-primary/30 hover:border-primary hover:bg-primary/10"
+            >
+              <Gift className="mr-2 h-4 w-4" />
+              Gifts
             </Button>
           </nav>
         </div>
@@ -101,17 +122,23 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
             size="icon"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             title="Toggle theme"
+            className="hover:bg-primary/10 hover:text-primary transition-colors"
           >
-            {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+            {theme === "light" ? (
+              <Moon className="h-5 w-5 hover:rotate-12 transition-transform" />
+            ) : (
+              <Sun className="h-5 w-5 hover:rotate-90 transition-transform" />
+            )}
           </Button>
           
           <Button
             variant="ghost"
             size="icon"
             onClick={onSearchClick}
-            className="hidden sm:flex"
+            className="hidden sm:flex hover:bg-primary/10 hover:text-primary transition-colors"
+            title="Search products"
           >
-            <Search className="h-5 w-5" />
+            <Search className="h-5 w-5 hover:scale-110 transition-transform" />
           </Button>
           
           {isAdmin && (
@@ -129,12 +156,13 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
           <Button
             variant="ghost"
             size="icon"
-            className="relative"
+            className="relative hover:bg-primary/10 hover:text-primary transition-colors"
             onClick={onCartClick}
+            title="View cart"
           >
-            <ShoppingCart className="h-5 w-5" />
+            <ShoppingCart className="h-5 w-5 hover:scale-110 transition-transform" />
             {cartItemCount > 0 && (
-              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-bold shadow-md">
+              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-gradient-to-r from-primary to-yellow-400 text-primary-foreground text-xs flex items-center justify-center font-bold shadow-lg animate-pulse">
                 {cartItemCount}
               </span>
             )}
@@ -144,8 +172,10 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
             variant="ghost"
             size="icon"
             onClick={() => navigate(user ? "/profile" : "/auth")}
+            className="hover:bg-primary/10 hover:text-primary transition-colors"
+            title={user ? "Profile" : "Sign in"}
           >
-            <User className="h-5 w-5" />
+            <User className="h-5 w-5 hover:scale-110 transition-transform" />
           </Button>
 
           <Button

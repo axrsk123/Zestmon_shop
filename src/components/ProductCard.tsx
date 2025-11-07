@@ -63,18 +63,21 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
         </p>
       </CardContent>
       
-      <CardFooter className="p-5 pt-0 flex items-center justify-between">
-        <div className="text-2xl font-bold text-primary">
-          ${product.price}
+      <CardFooter className="p-5 pt-0 flex items-center justify-between gap-4">
+        <div className="flex flex-col gap-1">
+          <div className="text-2xl font-bold bg-gradient-to-r from-primary to-yellow-400 bg-clip-text text-transparent">
+            ${product.price}
+          </div>
+          <span className="text-xs text-muted-foreground">Free shipping</span>
         </div>
         <Button 
           onClick={() => onAddToCart(product)}
           size="sm"
-          className="gap-2"
+          className="gap-2 shadow-md hover:shadow-lg transition-all group/btn"
           disabled={product.stock === 0}
         >
-          <ShoppingCart className="h-4 w-4" />
-          {product.stock === 0 ? "Out of Stock" : "Add"}
+          <ShoppingCart className="h-4 w-4 group-hover/btn:rotate-12 transition-transform" />
+          {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
         </Button>
       </CardFooter>
     </Card>
