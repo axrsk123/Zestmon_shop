@@ -57,15 +57,12 @@ const Header = ({ cartItemCount, onCartClick, onSearchClick }: HeaderProps) => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-8">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-yellow-400 to-primary opacity-20 blur-sm group-hover:opacity-40 transition-opacity rounded-lg" />
-            <h1 
-              className="relative text-2xl font-bold cursor-pointer bg-gradient-to-r from-primary via-yellow-300 to-primary bg-clip-text text-transparent hover:scale-105 transition-transform"
-              onClick={() => navigate("/")}
-            >
-              ZESTMON
-            </h1>
-          </div>
+          <h1 
+            className="text-2xl font-bold cursor-pointer text-primary hover:text-primary/80 transition-colors"
+            onClick={() => navigate("/")}
+          >
+            ZESTMON
+          </h1>
           
           <nav className="hidden md:flex gap-2">
             <Button

@@ -18,11 +18,10 @@ const SocialLinks = ({ variant = "default", showLabels = true }: SocialLinksProp
         >
           <Button 
             size="lg" 
-            className="relative bg-gradient-to-r from-[#FF0000] to-[#CC0000] hover:from-[#CC0000] hover:to-[#990000] text-white shadow-xl hover:shadow-2xl transition-all gap-3 group-hover:scale-110 overflow-hidden"
+            className="relative bg-[#FF0000] hover:bg-[#CC0000] text-white shadow-lg hover:shadow-xl transition-all gap-3 group-hover:scale-105"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 group-hover:translate-x-full transition-transform duration-700" />
-            <Youtube className="h-6 w-6 relative z-10 group-hover:rotate-12 transition-transform" />
-            <span className="font-bold relative z-10">Subscribe on YouTube</span>
+            <Youtube className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="font-semibold">Subscribe on YouTube</span>
           </Button>
         </a>
         <a
@@ -33,11 +32,10 @@ const SocialLinks = ({ variant = "default", showLabels = true }: SocialLinksProp
         >
           <Button 
             size="lg" 
-            className="relative bg-gradient-to-r from-[#5865F2] to-[#4752C4] hover:from-[#4752C4] hover:to-[#3C45A5] text-white shadow-xl hover:shadow-2xl transition-all gap-3 group-hover:scale-110 overflow-hidden"
+            className="relative bg-[#5865F2] hover:bg-[#4752C4] text-white shadow-lg hover:shadow-xl transition-all gap-3 group-hover:scale-105"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 group-hover:translate-x-full transition-transform duration-700" />
-            <MessageSquare className="h-6 w-6 relative z-10 group-hover:rotate-12 transition-transform" />
-            <span className="font-bold relative z-10">Join Discord</span>
+            <MessageSquare className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="font-semibold">Join Discord</span>
           </Button>
         </a>
       </div>
@@ -51,53 +49,43 @@ const SocialLinks = ({ variant = "default", showLabels = true }: SocialLinksProp
           href="https://www.youtube.com/channel/UCofvtlvoXM0ElgAgcrrWhqQ"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative flex items-center justify-center h-10 w-10 rounded-full overflow-hidden"
+          className="flex items-center justify-center h-9 w-9 rounded-lg bg-[#FF0000] hover:bg-[#CC0000] transition-all hover:scale-110 shadow-md"
           aria-label="YouTube Channel"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#FF0000] to-[#CC0000] group-hover:scale-110 transition-transform" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 group-hover:translate-x-full transition-transform duration-500" />
-          <Youtube className="h-5 w-5 text-white relative z-10 group-hover:scale-125 transition-transform" />
+          <Youtube className="h-5 w-5 text-white" />
         </a>
         <a
           href="https://discord.gg/NgU8dNap"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative flex items-center justify-center h-10 w-10 rounded-full overflow-hidden"
+          className="flex items-center justify-center h-9 w-9 rounded-lg bg-[#5865F2] hover:bg-[#4752C4] transition-all hover:scale-110 shadow-md"
           aria-label="Discord Community"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#5865F2] to-[#4752C4] group-hover:scale-110 transition-transform" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 group-hover:translate-x-full transition-transform duration-500" />
-          <MessageSquare className="h-5 w-5 text-white relative z-10 group-hover:scale-125 transition-transform" />
+          <MessageSquare className="h-5 w-5 text-white" />
         </a>
       </div>
     );
   }
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-3">
       <a
         href="https://www.youtube.com/channel/UCofvtlvoXM0ElgAgcrrWhqQ"
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex items-center justify-center h-14 w-14 rounded-full overflow-hidden shadow-xl hover:shadow-2xl"
+        className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#FF0000] hover:bg-[#CC0000] transition-all hover:scale-110 shadow-lg"
         aria-label="YouTube Channel"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FF0000] via-[#FF3333] to-[#CC0000] group-hover:scale-110 transition-transform" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 group-hover:translate-x-full transition-transform duration-700" />
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.2)_0%,_transparent_70%)] transition-opacity" />
-        <Youtube className="h-7 w-7 text-white relative z-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300" />
+        <Youtube className="h-6 w-6 text-white" />
       </a>
       <a
         href="https://discord.gg/NgU8dNap"
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex items-center justify-center h-14 w-14 rounded-full overflow-hidden shadow-xl hover:shadow-2xl"
+        className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#5865F2] hover:bg-[#4752C4] transition-all hover:scale-110 shadow-lg"
         aria-label="Discord Community"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-[#5865F2] via-[#6875F5] to-[#4752C4] group-hover:scale-110 transition-transform" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 group-hover:translate-x-full transition-transform duration-700" />
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.2)_0%,_transparent_70%)] transition-opacity" />
-        <MessageSquare className="h-7 w-7 text-white relative z-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300" />
+        <MessageSquare className="h-6 w-6 text-white" />
       </a>
     </div>
   );
